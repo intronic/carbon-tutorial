@@ -14,6 +14,13 @@ import {
 } from '@carbon/react';
 
 const RepoTable = ({ rows, headers }) => {
+  const getRowDescription = (rowId, r) => {
+    console.dir(rowId);
+    console.dir(r);
+    const row = rows.find(({ id }) => id === rowId);
+    return row ? row.description : '';
+  };
+
   return (
     <DataTable
       rows={rows}
@@ -48,7 +55,7 @@ const RepoTable = ({ rows, headers }) => {
                     ))}
                   </TableExpandRow>
                   <TableExpandedRow colSpan={headers.length + 1}>
-                    <p>Row description</p>
+                    <p>{getRowDescription(row.id, row)}</p>
                   </TableExpandedRow>
                 </React.Fragment>
               ))}
